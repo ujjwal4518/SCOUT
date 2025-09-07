@@ -6,15 +6,16 @@ from email import encoders
 import os
 import traceback
 
-def send_alert(sender_email, sender_password, recipient_email, video_path):
+
+def send_intruder_alert(sender_email, sender_password, recipient_email, video_path):
     """
-    Sends an email alert with a video attachment.
+    Sends an email alert with a video attachment when an intruder is detected.
     
     Args:
         sender_email (str): Email address of the sender.
         sender_password (str): Password or app-specific password for the sender's email.
         recipient_email (str): Email address of the recipient.
-        video_path (str): Path to the video file to attach.
+        video_path (str): Path to the intruder video file to attach.
     """
     try:
         # Validate video file exists
@@ -26,12 +27,12 @@ def send_alert(sender_email, sender_password, recipient_email, video_path):
         msg = MIMEMultipart()
         msg['From'] = sender_email
         msg['To'] = recipient_email
-        msg['Subject'] = "Intruder-Detected - Video Recording"
+        msg['Subject'] = "🚨 Intruder Detected Alert - Video Recording"
         body = (
             "Dear User,\n\n"
-            "A intruder was detected by our monitoring system. "
-            "The recording has been started and saved.\n\n"
-            "Best regards,\nYour Security System"
+            "An intruder was detected by your monitoring system. "
+            "Please find the attached video recording for review.\n\n"
+            "Stay safe,\nYour Security System"
         )
         
         # Attach email body
@@ -54,18 +55,19 @@ def send_alert(sender_email, sender_password, recipient_email, video_path):
             server.starttls()  # Start TLS encryption
             server.login(sender_email, sender_password)
             server.send_message(msg)
-            print("Email alert sent successfully!")
+            print("✅ Intruder alert sent successfully!")
     
     except Exception as e:
-        print(f"Error sending email alert: {e}")
+        print(f"Error sending intruder alert: {e}")
         print(traceback.format_exc())
 
-if __name__ == "__main__":
+
+if __name__ == "_main_":
     # Example usage
     sender_email = "shyam451807@gmail.com"
     sender_password = "zuie mfpm zeku jaxp"  # Use App Password if Gmail
     recipient_email = "ujjwaldwivedi567@gmail.com"
-    video_path = "recording_20250416_152047.avi"  # Replace with your video file path
+    video_path = "recording_intruder.avi"  # Replace with the actual video file path
     
-    # Send alert
-    send_alert(sender_email, sender_password, recipient_email, video_path)
+    # Send intruder alert
+    send_intruder_alert(sender_email, sender_password, recipient_email, video_path)

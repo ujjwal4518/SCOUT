@@ -1,7 +1,1 @@
-streamlit
-opencv-python
-ultralytics
-cvzone
-pandas
-numpy
-face-recognition
+
